@@ -1,6 +1,6 @@
 import { product } from "./products.js";
 
-const IG_DM = "https://ig.me/m/lins_official";
+const IG_DM = "https://ig.me/m/lins__official";
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const header = document.querySelector("#site-header");
@@ -143,3 +143,10 @@ initNav();
 initReveal();
 initDialog();
 initNewsletter();
+
+const veilCanvas = document.querySelector("#silk-veil");
+if (veilCanvas) {
+  import("./silk-veil.js")
+    .then(({ initSilkVeil }) => initSilkVeil(veilCanvas))
+    .catch(() => veilCanvas.classList.add("is-unavailable"));
+}

@@ -4,11 +4,11 @@ export const product = {
   materialLabel: "Viscose Bamboo",
   size: "All Size",
   priceLabel: "Harga via DM",
-  badge: "Daily Essential",
+  badge: "All Size",
   description:
-    "Pashmina viscose bahan bamboo yang super soft & comfy buat nemenin daily look kamu. Ringan, adem, dan jatuh cantik untuk dipakai dari pagi sampai sore.",
+    "Pashmina viscose bamboo yang ringan dan adem. Jatuhnya lembut, nggak kaku, dan gampang diatur.",
   material:
-    "Viscose bamboo dengan permukaan lembut, ringan, dan nyaman untuk pemakaian harian.",
+    "Viscose bamboo dengan permukaan halus, ringan, dan nggak gerah untuk pemakaian harian.",
 };
 
 export const products = [product];

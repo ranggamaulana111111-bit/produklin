@@ -4,16 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#F4F4F6" />
-  <title>lins_official — Pashmina Viscose Bamboo untuk Daily Look</title>
-  <meta name="description" content="Pashmina viscose bamboo yang super soft & comfy buat nemenin daily look kamu. Order lewat link di bio atau DM lins_official." />
-  <meta property="og:title" content="lins_official — Pashmina Viscose Bamboo untuk Daily Look" />
-  <meta property="og:description" content="Super soft, super comfy. Pashmina viscose bamboo untuk menemani hari-hari biasa." />
+  <title>lins_official — Pashmina Viscose Bamboo</title>
+  <meta name="description" content="Pashmina viscose bamboo yang ringan dan adem. Jatuhnya lembut, nggak kaku, dan nyaman dipakai harian. Order lewat DM atau link di bio." />
+  <meta property="og:title" content="lins_official — Pashmina Viscose Bamboo" />
+  <meta property="og:description" content="Pashmina viscose bamboo yang ringan, adem, dan nyaman dipakai harian." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./src/style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./node_modules/three/build/three.module.js"
+      }
+    }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
@@ -29,11 +36,11 @@
         <a href="#filosofi">Tentang</a>
         <a href="#material">Bahan</a>
         <a href="#order">Cara Order</a>
-        <a class="site-nav__mobile-only" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">DM Instagram</a>
+        <a class="site-nav__mobile-only" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">DM Instagram</a>
       </nav>
 
       <div class="header-actions">
-        <a class="header-concierge" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">DM</a>
+        <a class="header-concierge" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">DM</a>
         <button class="icon-btn menu-trigger" id="menu-trigger" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="site-nav">
           <span class="menu-trigger__lines" aria-hidden="true"><i></i><i></i></span>
         </button>
@@ -44,21 +51,22 @@
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <img class="hero__backdrop" src="./public/background_atas.png" alt="" width="1536" height="2752" fetchpriority="high" aria-hidden="true" />
+      <canvas class="hero__veil" id="silk-veil" aria-hidden="true"></canvas>
       <div class="hero__inner container">
         <div class="hero__copy">
           <p class="eyebrow hero__eyebrow">
             <span class="eyebrow__rule" aria-hidden="true"></span>
-            Pashmina Viscose Bamboo — Daily Collection
+            Pashmina Viscose Bamboo · All Size
           </p>
           <h1 class="hero__title" id="hero-title">
-            <span class="line"><span>Super Soft,</span></span>
-            <span class="line"><em>Super Comfy,</em></span>
-            <span class="line"><span>Buat Daily</span></span>
-            <span class="line"><em>Look Kamu.</em></span>
+            <span class="line"><span>Pashmina</span></span>
+            <span class="line"><em>viscose bamboo.</em></span>
+            <span class="line"><span>Lembut, ringan,</span></span>
+            <span class="line"><em>nggak gerah.</em></span>
           </h1>
-          <p class="hero__desc">Pashmina viscose berbahan bamboo yang super soft &amp; comfy buat nemenin daily look kamu. Ringan, adem, dan jatuh cantik dari pagi sampai sore.</p>
+          <p class="hero__desc">Ringan, adem, dan jatuhnya lembut. Nggak kaku, jadi gampang diatur dan nyaman dipakai lama.</p>
           <div class="hero__actions">
-            <a class="btn btn--primary" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">
+            <a class="btn btn--primary" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">
               <span>Order via DM</span>
               <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
             </a>
@@ -70,12 +78,12 @@
               <dd>Viscose Bamboo</dd>
             </div>
             <div>
-              <dt>Fit</dt>
-              <dd>Daily · All Size</dd>
+              <dt>Ukuran</dt>
+              <dd>All Size</dd>
             </div>
             <div>
               <dt>Order</dt>
-              <dd>Link di Bio / DM</dd>
+              <dd>DM / link di bio</dd>
             </div>
           </dl>
         </div>
@@ -174,7 +182,7 @@
             <div class="look__frame look__frame--arch">
               <img class="look__photo" src="./public/model1.png" alt="Pashmina viscose bamboo lins_official dalam daily look" width="676" height="796" loading="lazy" />
               <span class="look__index">I</span>
-              <span class="look__tag">Daily Essential</span>
+              <span class="look__tag">All Size</span>
             </div>
             <figcaption>
               <span class="look__name">The Daily Pashmina</span>
@@ -207,7 +215,7 @@
 
         <div class="lookbook__foot reveal">
           <p>Satu pashmina, banyak cara pakai.</p>
-          <a class="text-link" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">
+          <a class="text-link" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">
             Order via DM
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
           </a>
@@ -260,7 +268,7 @@
             <p class="label">The Pashmina</p>
             <h2 id="catalog-title">Pashmina <em>Daily</em></h2>
           </div>
-          <p class="catalog__count reveal" id="catalog-count" aria-live="polite">Daily essential</p>
+          <p class="catalog__count reveal" id="catalog-count" aria-live="polite">1 pashmina · all size</p>
         </header>
 
         <div class="product-grid product-grid--single" id="product-grid">
@@ -270,7 +278,7 @@
               <button class="product-card__open" type="button" data-open-product="pashmina-viscose-bamboo">
                 <span class="sr-only">Lihat detail Pashmina Viscose Bamboo</span>
               </button>
-              <span class="product-card__badge">Daily Essential</span>
+                <span class="product-card__badge">All Size</span>
               <span class="product-card__peek">Lihat Detail</span>
             </div>
             <div class="product-card__body">
@@ -281,7 +289,7 @@
                 </div>
                 <p class="product-card__price">Harga via DM</p>
               </div>
-              <a class="btn btn--line product-card__add" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">
+              <a class="btn btn--line product-card__add" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">
                 Order via DM <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -298,11 +306,11 @@
         <span></span><span></span><span></span>
       </div>
       <div class="container promo__inner">
-        <p class="label label--gold reveal">Order Now · Daily Collection</p>
-        <h2 id="promo-title" class="reveal">Siap buat <em>daily look</em> kamu?</h2>
-        <p class="promo__desc reveal">Pashmina viscose bahan bamboo yang super soft &amp; comfy buat nemenin daily look kamu. Yuk, langsung order lewat link di bio atau DM kita yaa!</p>
-        <a class="btn btn--gold reveal" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">
-          <span>DM lins_official</span>
+        <p class="label label--gold reveal">Order Now · Viscose Bamboo</p>
+        <h2 id="promo-title" class="reveal">Cukup <em>satu pashmina.</em></h2>
+        <p class="promo__desc reveal">Ringan, adem, dan nggak kaku. Buat order atau tanya warna, langsung DM atau lewat link di bio.</p>
+        <a class="btn btn--gold reveal" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">
+          <span>DM lins__official</span>
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
         </a>
         <p class="promo__note reveal">Atau buka link di bio untuk melihat pilihan warna terbaru.</p>
@@ -316,8 +324,8 @@
           <h2 id="giving-title">Cara <em>Order.</em></h2>
         </div>
         <div class="giving__body reveal">
-          <p>Buka link di bio atau kirim DM ke @lins_official. Pilih warna dan jumlah, lalu konfirmasi alamat. Kami bantu prosesnya sampai pashmina siap menemani harimu.</p>
-          <a class="text-link" href="https://www.instagram.com/lins_official/" target="_blank" rel="noopener">
+          <p>Buka link di bio atau kirim DM ke @lins__official. Pilih warna dan jumlah, lalu konfirmasi alamat. Kami bantu prosesnya sampai pashmina siap menemani harimu.</p>
+          <a class="text-link" href="https://www.instagram.com/lins__official/" target="_blank" rel="noopener">
             Buka Instagram
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
           </a>
@@ -364,28 +372,28 @@
 
         <nav class="footer-col" aria-label="Bantuan order">
           <h3>Bantuan</h3>
-          <a href="https://ig.me/m/lins_official" target="_blank" rel="noopener">Order via DM</a>
-          <a href="https://www.instagram.com/lins_official/" target="_blank" rel="noopener">Link di Bio</a>
+          <a href="https://ig.me/m/lins__official" target="_blank" rel="noopener">Order via DM</a>
+          <a href="https://www.instagram.com/lins__official/" target="_blank" rel="noopener">Link di Bio</a>
           <a href="#material">Perawatan</a>
           <a href="#order">Warna &amp; Stok</a>
         </nav>
 
         <div class="footer-col footer-contact">
           <h3>Concierge</h3>
-          <a href="https://ig.me/m/lins_official" target="_blank" rel="noopener">
+          <a href="https://ig.me/m/lins__official" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M20 11.5a7.5 7.5 0 0 1-10.8 6.7L4 20l1.8-5.2A7.5 7.5 0 1 1 20 11.5Z" /></svg>
             Instagram DM
           </a>
-          <a href="https://www.instagram.com/lins_official/" target="_blank" rel="noopener">@lins_official</a>
+          <a href="https://www.instagram.com/lins__official/" target="_blank" rel="noopener">@lins__official</a>
           <p class="footer-hours">#pashminaviscose · #linsofficial</p>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 lins_official. Super soft, everyday ease.</p>
+        <p>© 2026 lins_official. Pashmina viscose bamboo.</p>
         <p class="footer-demo">Harga, warna, dan stok dikonfirmasi melalui DM.</p>
         <div class="footer-legal">
-          <a href="https://www.instagram.com/lins_official/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.instagram.com/lins__official/" target="_blank" rel="noopener">Instagram</a>
           <a href="#top" class="footer-top-link">Ke atas</a>
         </div>
       </div>
@@ -408,7 +416,7 @@
         <p class="product-dialog__desc" id="product-dialog-desc"></p>
 
         <div class="product-dialog__actions">
-          <a class="btn btn--primary" id="product-dialog-cta" href="https://ig.me/m/lins_official" target="_blank" rel="noopener">
+          <a class="btn btn--primary" id="product-dialog-cta" href="https://ig.me/m/lins__official" target="_blank" rel="noopener">
             <span>Order via DM</span>
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 12h15M13 6l6 6-6 6" /></svg>
           </a>
@@ -417,7 +425,7 @@
         <dl class="product-dialog__details">
           <div><dt>Bahan</dt><dd id="product-dialog-material"></dd></div>
           <div><dt>Ukuran</dt><dd id="product-dialog-size"></dd></div>
-          <div><dt>Order</dt><dd>Lewat link di bio atau DM @lins_official.</dd></div>
+          <div><dt>Order</dt><dd>Lewat link di bio atau DM @lins__official.</dd></div>
           <div><dt>Perawatan</dt><dd>Cuci lembut dengan air dingin, keringkan di tempat teduh.</dd></div>
         </dl>
       </div>
