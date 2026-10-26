@@ -1,6 +1,6 @@
 import { product } from "./products.js";
 
-const IG_DM = "https://ig.me/m/lins__official";
+const SHOPEE = "https://shopee.co.id/universal-link?redir=https%3A%2F%2Fid.shp.ee%2F7pl68alf&smtt=0.0.3";
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const header = document.querySelector("#site-header");
@@ -45,13 +45,13 @@ function showToast(message) {
 
 function openProduct() {
   lastFocus = document.activeElement;
-  dialogKicker.textContent = "Daily Collection";
+  dialogKicker.textContent = "Viscose Bamboo";
   dialogTitle.textContent = product.name;
   dialogPrice.textContent = product.priceLabel;
   dialogDesc.textContent = product.description;
   dialogMaterial.textContent = product.material;
   dialogSize.textContent = product.size;
-  dialogCta.href = IG_DM;
+  dialogCta.href = SHOPEE;
 
   if (!dialog.open) {
     dialog.showModal();
@@ -60,9 +60,27 @@ function openProduct() {
 }
 
 function initHeader() {
-  const update = () => header.classList.toggle("is-scrolled", window.scrollY > 12);
+  let ticking = false;
+
+  const update = () => {
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(y / max, 1) : 0;
+
+    header.classList.toggle("is-scrolled", y > 12);
+    header.style.setProperty("--scroll-progress", progress.toFixed(4));
+    ticking = false;
+  };
+
+  const requestUpdate = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  };
+
   update();
-  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate, { passive: true });
 }
 
 function initNav() {
@@ -97,7 +115,7 @@ function initReveal() {
         observer.unobserve(entry.target);
       });
     },
-    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+    { threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
   );
 
   items.forEach((item) => {
