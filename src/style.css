@@ -3653,6 +3653,12 @@ body.nav-open .menu-trigger__lines i:last-child {
     transform: none;
   }
 
+  body.nav-open .site-header {
+    animation: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
   .site-nav a {
     font-family: var(--serif);
     font-size: clamp(2rem, 6vw, 3rem);
@@ -4246,6 +4252,80 @@ body.nav-open .menu-trigger__lines i:last-child {
   }
 }
 
+/* Ambient 3D background */
+.ambient-3d {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.ambient-3d.is-unavailable {
+  display: none;
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Pointer-driven 3D tilt on product media */
+.product-card__media {
+  --rx: 0deg;
+  --ry: 0deg;
+  transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.7s var(--ease-out);
+  will-change: transform;
+}
+
+.product-card__media.is-tilting {
+  transition: transform 0.12s linear;
+}
+
+.product-card__glare {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    220px 220px at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.42),
+    rgba(255, 255, 255, 0) 68%
+  );
+  mix-blend-mode: soft-light;
+  transition: opacity 0.45s var(--ease);
+}
+
+.product-card__media:hover .product-card__glare {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .product-card__media {
+    transform: none;
+  }
+
+  .product-card__glare {
+    display: none;
+  }
+}
+
+@media (hover: none) {
+  .product-card__media {
+    transform: none;
+  }
+
+  .product-card__glare {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -4312,5 +4392,14 @@ body.nav-open .menu-trigger__lines i:last-child {
 
   .site-header::after {
     display: none;
+  }
+
+  .ambient-3d,
+  .product-card__glare {
+    display: none;
+  }
+
+  .product-card__media {
+    transform: none;
   }
 }

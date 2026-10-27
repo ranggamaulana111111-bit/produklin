@@ -38,23 +38,26 @@ const vertexShader = `
     vec3 p = position;
     float t = uTime * 0.22 + uSeed;
 
-    float wave = sin(p.x * 0.85 + t) * 0.24
-      + cos(p.y * 1.15 - t * 0.8) * 0.16
-      + sin((p.x + p.y) * 1.45 + t * 1.1) * 0.05;
+    float wave = sin(p.x * 0.85 + t) * 0.34
+      + cos(p.y * 1.15 - t * 0.8) * 0.22
+      + sin((p.x + p.y) * 1.45 + t * 1.1) * 0.08
+      + sin((p.x - p.y) * 0.55 + t * 0.4) * 0.06;
 
     p.z += wave;
-    p.x += sin(p.y * 0.9 + t * 0.55) * 0.12;
-    p.y += cos(p.x * 0.65 + t * 0.45) * 0.06;
-    p.x += uPointer.x * 0.18 * (0.3 + uv.y);
-    p.y += uPointer.y * 0.12;
+    p.x += sin(p.y * 0.9 + t * 0.55) * 0.16;
+    p.y += cos(p.x * 0.65 + t * 0.45) * 0.08;
+    p.x += uPointer.x * 0.26 * (0.3 + uv.y);
+    p.y += uPointer.y * 0.16;
 
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     vViewPos = mv.xyz;
 
-    float dx = cos(p.x * 0.85 + t) * 0.24 * 0.85
-      + cos((p.x + p.y) * 1.45 + t * 1.1) * 0.05 * 1.45;
-    float dy = -sin(p.y * 1.15 - t * 0.8) * 0.16 * 1.15
-      + cos((p.x + p.y) * 1.45 + t * 1.1) * 0.05 * 1.45;
+    float dx = cos(p.x * 0.85 + t) * 0.34 * 0.85
+      + cos((p.x + p.y) * 1.45 + t * 1.1) * 0.08 * 1.45
+      + cos((p.x - p.y) * 0.55 + t * 0.4) * 0.06 * 0.55;
+    float dy = -sin(p.y * 1.15 - t * 0.8) * 0.22 * 1.15
+      + cos((p.x + p.y) * 1.45 + t * 1.1) * 0.08 * 1.45
+      - cos((p.x - p.y) * 0.55 + t * 0.4) * 0.06 * 0.55;
 
     vec3 n = normalize(vec3(-dx * 1.4, -dy * 1.4, 1.0));
     vViewNormal = normalize(normalMatrix * n);
@@ -95,11 +98,17 @@ const fragmentShader = `
       22.0
     );
 
+    float drift = pow(
+      0.5 + 0.5 * sin(vUv.x * 3.2 - uTime * 0.32 + vUv.y * 2.1 + uSeed),
+      3.0
+    );
+
     vec3 color = mix(uShadow, uPearl, 0.3 + vUv.y * 0.36 + sheen * 0.2);
     color = mix(color, uGold, fresnel * 0.9 + sheen * 0.28);
     color += uGold * shimmer * 0.5;
+    color += uGold * drift * 0.14;
 
-    float alpha = (0.08 + fresnel * 0.34 + sheen * 0.1 + shimmer * 0.15) * edgeX * edgeY;
+    float alpha = (0.1 + fresnel * 0.38 + sheen * 0.12 + shimmer * 0.15 + drift * 0.08) * edgeX * edgeY;
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -310,12 +319,22 @@ export function initSilkVeil(canvas) {
     pointer.value.lerp(pointerTarget, 0.035);
     time.value = clock.getElapsedTime();
 
-    group.rotation.y = -0.34 + Math.sin(time.value * 0.08) * 0.06 + pointer.value.x * 0.12;
-    group.rotation.x = -0.06 + Math.sin(time.value * 0.06) * 0.025 - pointer.value.y * 0.06;
-    group.position.x = pointer.value.x * 0.08;
-    dust.rotation.y = time.value * 0.015;
-    thread.rotation.z = Math.sin(time.value * 0.1) * 0.02;
-    pin.scale.setScalar(0.9 + Math.sin(time.value * 0.7) * 0.16);
+    const t = time.value;
+
+    group.rotation.y = -0.34 + Math.sin(t * 0.12) * 0.12 + pointer.value.x * 0.16;
+    group.rotation.x = -0.06 + Math.sin(t * 0.09) * 0.04 - pointer.value.y * 0.08;
+    group.rotation.z = Math.sin(t * 0.07) * 0.02;
+    group.position.x = pointer.value.x * 0.12;
+    group.position.y = Math.sin(t * 0.15) * 0.06 + pointer.value.y * 0.05;
+    camera.position.x = pointer.value.x * 0.16;
+    camera.position.y = -pointer.value.y * 0.12;
+    camera.lookAt(0, 0, 0);
+    backVeil.rotation.z = 0.06 + Math.sin(t * 0.18) * 0.05;
+    frontVeil.rotation.z = -0.05 + Math.sin(t * 0.16 + 1.4) * 0.06;
+    dust.rotation.y = t * 0.03;
+    dust.rotation.x = Math.sin(t * 0.08) * 0.05;
+    thread.rotation.z = Math.sin(t * 0.1) * 0.03;
+    pin.scale.setScalar(0.9 + Math.sin(t * 0.7) * 0.16);
 
     renderer.render(scene, camera);
     frame = requestAnimationFrame(render);

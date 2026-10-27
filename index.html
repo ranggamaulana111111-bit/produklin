@@ -68,6 +68,7 @@
   </script>
 </head>
 <body>
+  <canvas class="ambient-3d" id="ambient-3d" aria-hidden="true"></canvas>
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
 
   <header class="site-header" id="site-header">
@@ -374,8 +375,9 @@
 
         <div class="product-grid product-grid--single" id="product-grid">
           <article class="product-card reveal" style="--i: 0">
-            <div class="product-card__media">
+            <div class="product-card__media" data-tilt>
               <img class="product-card__photo" src="./public/model1.png" alt="Model lins_official mengenakan pashmina viscose bamboo untuk aktivitas harian" width="676" height="796" loading="lazy" />
+              <span class="product-card__glare" aria-hidden="true"></span>
               <span class="product-card__seam" aria-hidden="true"></span>
               <span class="product-card__badge">All Size</span>
               <p class="product-card__vertical" aria-hidden="true">PASHMINA VISCOSE BAMBOO</p>

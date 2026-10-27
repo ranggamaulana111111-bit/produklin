@@ -124,6 +124,52 @@ function initReveal() {
   });
 }
 
+function initTilt() {
+  if (reducedMotion || !window.matchMedia("(pointer: fine)").matches) return;
+
+  const targets = document.querySelectorAll("[data-tilt]");
+  const max = 5;
+
+  targets.forEach((target) => {
+    const glare = target.querySelector(".product-card__glare");
+    let frame = 0;
+    let x = 0;
+    let y = 0;
+
+    const apply = () => {
+      target.style.setProperty("--rx", `${(-y * max).toFixed(2)}deg`);
+      target.style.setProperty("--ry", `${(x * max).toFixed(2)}deg`);
+      frame = 0;
+    };
+
+    target.addEventListener(
+      "pointermove",
+      (event) => {
+        const rect = target.getBoundingClientRect();
+        x = (event.clientX - rect.left) / rect.width - 0.5;
+        y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        if (glare) {
+          glare.style.setProperty("--mx", `${((x + 0.5) * 100).toFixed(1)}%`);
+          glare.style.setProperty("--my", `${((y + 0.5) * 100).toFixed(1)}%`);
+        }
+
+        target.classList.add("is-tilting");
+        if (!frame) frame = window.requestAnimationFrame(apply);
+      },
+      { passive: true },
+    );
+
+    target.addEventListener("pointerleave", () => {
+      x = 0;
+      y = 0;
+      target.style.setProperty("--rx", "0deg");
+      target.style.setProperty("--ry", "0deg");
+      target.classList.remove("is-tilting");
+    });
+  });
+}
+
 function initDialog() {
   productGrid.addEventListener("click", (event) => {
     if (event.target.closest("[data-open-product]")) openProduct();
@@ -159,6 +205,7 @@ function initNewsletter() {
 initHeader();
 initNav();
 initReveal();
+initTilt();
 initDialog();
 initNewsletter();
 
@@ -167,4 +214,11 @@ if (veilCanvas) {
   import("./silk-veil.js")
     .then(({ initSilkVeil }) => initSilkVeil(veilCanvas))
     .catch(() => veilCanvas.classList.add("is-unavailable"));
+}
+
+const ambientCanvas = document.querySelector("#ambient-3d");
+if (ambientCanvas) {
+  import("./ambient-3d.js")
+    .then(({ initAmbient3D }) => initAmbient3D(ambientCanvas))
+    .catch(() => ambientCanvas.classList.add("is-unavailable"));
 }
